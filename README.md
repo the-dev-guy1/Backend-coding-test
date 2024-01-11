@@ -2,7 +2,7 @@
 
 
 ## How to use
-1. Run `git clone https://github.com/the-dev-guy1/Backend-coding-test.git` to clone the repository.
+1. Run `git clone` to clone the repository.
 2. Run `composer install` to install composer dependencies.
 3. Copy `.env.example` to `.env` and edit the database credentials there.
 4. Run `php artisan key:generate` to generate an app encryption key.
