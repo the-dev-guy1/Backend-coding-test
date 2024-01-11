@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('locations', function (Blueprint $table) {
+        Schema::create('company_groups', function (Blueprint $table) {
             $table->id();
-            $table->string('location_name');
             $table->foreignId('company_id')->constrained();
-            $table->boolean('is_active')->default(true);
+            $table->string('name');
+            $table->foreignId('head_employee_id')->nullable()->constrained('employees');
+            $table->foreignId('parent_group_id')->nullable()->constrained('company_groups');
             $table->timestamps();
         });
-
     }
 
     /**
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('locations');
+        Schema::dropIfExists('company_groups');
     }
 };

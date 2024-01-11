@@ -26,6 +26,8 @@ return new class extends Migration
             $table->string('country');
             $table->string('postal_code');
             $table->boolean('is_active')->default(true);
+            $table->foreignId('company_id')->constrained();
+            $table->foreignId('company_group_id')->nullable()->constrained('company_groups');
             $table->timestamps();
         });
 

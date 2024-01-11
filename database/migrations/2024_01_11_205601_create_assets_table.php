@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('locations', function (Blueprint $table) {
+        Schema::create('assets', function (Blueprint $table) {
             $table->id();
-            $table->string('location_name');
+            $table->string('name');
+            $table->enum('type', ['Fixed Assets', 'Current Assets', 'Tangible Assets','Intangible Assets','Operating Assets','Non-Operating Assets']);
+            $table->float('cost')->nullable();
+            $table->string('depreciation_rate')->nullable();
             $table->foreignId('company_id')->constrained();
-            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
-
     }
 
     /**
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('locations');
+        Schema::dropIfExists('assets');
     }
 };

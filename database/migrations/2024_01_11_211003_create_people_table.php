@@ -11,14 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('locations', function (Blueprint $table) {
+        Schema::create('people', function (Blueprint $table) {
             $table->id();
-            $table->string('location_name');
+            $table->string('first_name');
+            $table->string('last_name')->nullable();
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('type')->nullable();
             $table->foreignId('company_id')->constrained();
-            $table->boolean('is_active')->default(true);
+            $table->foreignId('employee_id')->constrained('employees');
             $table->timestamps();
         });
-
     }
 
     /**
@@ -26,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('locations');
+        Schema::dropIfExists('people');
     }
 };
